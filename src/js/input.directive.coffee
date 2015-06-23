@@ -39,7 +39,7 @@ linker = (scope, elem, attrs, ngModelCtrl, $compile, aaDateUtil, includeTimepick
 
     popupDiv = angular.element(tmpl)
     $popup = $compile(popupDiv)(scope)
-    elem.after($popup) 
+    elem.after($popup)
 
   # Various events need to be created related to opening and closing
   # the popup. They also need to be disabled when the directive
@@ -111,9 +111,6 @@ angular.module('angular-date-picker-polyfill')
     {
       restrict: 'A',
       require: 'ngModel',
-      scope: {
-        ngModel: '='
-      },
       link: (scope, elem, attrs, ngModelCtrl) ->
         linker(scope, elem, attrs, ngModelCtrl, $compile, aaDateUtil, false)
     }
@@ -132,17 +129,17 @@ angular.module('angular-date-picker-polyfill')
 
 
 
-unless Modernizr.inputtypes.date
-  angular.module('angular-date-picker-polyfill')
-    .directive 'input', ($compile, aaDateUtil) ->
-      {
-        restrict: 'E',
-        require: '?ngModel',
-        scope: {
-          ngModel: '='
-        },
-        compile: (elem, attrs) ->
-          return unless attrs.ngModel? && (attrs.type == 'date' || attrs.type == 'datetime-local')
-          (scope, elem, attrs, ngModelCtrl) ->
-            linker(scope, elem, attrs, ngModelCtrl, $compile, aaDateUtil, (attrs.type == 'datetime-local'))
-      }
+# unless Modernizr.inputtypes.date
+#   angular.module('angular-date-picker-polyfill')
+#     .directive 'input', ($compile, aaDateUtil) ->
+#       {
+#         restrict: 'E',
+#         require: '?ngModel',
+#         scope: {
+#           ngModel: '='
+#         },
+#         compile: (elem, attrs) ->
+#           return unless attrs.ngModel? && (attrs.type == 'date' || attrs.type == 'datetime-local')
+#           (scope, elem, attrs, ngModelCtrl) ->
+#             linker(scope, elem, attrs, ngModelCtrl, $compile, aaDateUtil, (attrs.type == 'datetime-local'))
+#       }
